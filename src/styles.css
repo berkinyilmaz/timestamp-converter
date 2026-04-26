@@ -1,0 +1,537 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0a0a0c;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #0c0f18 0%, #0a0a0c 70%);
+  --surface: #111115;
+  --surface-hover: #18181d;
+  --surface-2: #16161b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --text: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.38);
+  --accent: #6366f1;
+  --accent-hover: #4f52d9;
+  --accent-dim: rgba(99, 102, 241, 0.1);
+  --accent-border: rgba(99, 102, 241, 0.22);
+  --success: #86efac;
+  --success-bg: rgba(134, 239, 172, 0.08);
+  --error: #fca5a5;
+  --error-bg: rgba(239, 68, 68, 0.08);
+  --error-border: rgba(239, 68, 68, 0.2);
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --r-lg: 20px;
+  --r-md: 14px;
+  --r-sm: 10px;
+  --r-xs: 8px;
+  --r-pill: 999px;
+  --transition: 180ms ease;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  background-image: var(--bg-gradient);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── App Shell ─────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ─── Header ─────────────────────────────────────── */
+.header {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.day-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-pill);
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.header-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.header-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Buttons ─────────────────────────────────────── */
+.btn-ghost {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.btn-primary {
+  padding: 7px 18px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--r-pill);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+.btn-primary:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.btn-now {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-pill);
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+  white-space: nowrap;
+}
+.btn-now:hover {
+  background: rgba(99, 102, 241, 0.16);
+}
+
+.btn-copy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+.btn-copy:hover {
+  border-color: var(--border-hover);
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+}
+.btn-copy.copied {
+  color: var(--success);
+  border-color: rgba(134,239,172,0.3);
+  background: rgba(134,239,172,0.06);
+}
+
+/* ─── Main ────────────────────────────────────────── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px 48px;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── Live Clock ──────────────────────────────────── */
+.live-clock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  margin-bottom: 32px;
+  align-self: center;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 6px rgba(134,239,172,0.6);
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.live-unix {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.live-sep {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.live-date {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ─── Converter Card ──────────────────────────────── */
+.converter-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.card-section {
+  padding: 20px 24px;
+}
+
+.card-section + .card-section {
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ts-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+  min-width: 0;
+}
+.ts-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.ts-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+.ts-input.error {
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* ─── Swap button ─────────────────────────────────── */
+.swap-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.swap-line {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: var(--border);
+}
+
+.swap-btn {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.swap-btn:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  transform: rotate(180deg);
+}
+
+/* ─── Date input ──────────────────────────────────── */
+.date-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  outline: none;
+  transition: all var(--transition);
+  min-width: 0;
+  color-scheme: dark;
+}
+.date-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* ─── Output Grid ─────────────────────────────────── */
+.output-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.output-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color var(--transition);
+}
+.output-item:hover {
+  border-color: var(--border-hover);
+}
+
+.output-item-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.output-item-value {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  word-break: break-all;
+  min-height: 1.5em;
+}
+.output-item-value.accent {
+  color: var(--accent);
+  font-weight: 500;
+}
+.output-item-value.muted {
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+}
+
+/* ─── Timezone selector ───────────────────────────── */
+.tz-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tz-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.tz-select {
+  flex: 1;
+  padding: 7px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  color-scheme: dark;
+}
+.tz-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* ─── Error text ──────────────────────────────────── */
+.error-text {
+  font-size: 0.8125rem;
+  color: var(--error);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── Relative time badge ─────────────────────────── */
+.relative-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-pill);
+  font-size: 0.8125rem;
+  color: var(--accent);
+  font-weight: 500;
+  align-self: flex-start;
+  margin-top: 16px;
+}
+
+/* ─── Footer ─────────────────────────────────────── */
+.credit {
+  text-align: center;
+  padding: 20px 24px 32px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.credit-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.credit-link:hover {
+  color: var(--accent);
+}
+
+/* ─── Scrollbars ──────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .header { padding: 0 16px; }
+  .main { padding: 20px 16px 40px; }
+  .card-section { padding: 16px; }
+  .output-grid { grid-template-columns: 1fr; }
+  .header-sub { display: none; }
+  .live-sep, .live-date { display: none; }
+  .day-badge { display: none; }
+}
